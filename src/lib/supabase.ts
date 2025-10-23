@@ -19,6 +19,7 @@ export interface Product {
   description: string;
   image: string;
   category: string;
+  show_price: boolean;
   created_at: string;
   updated_at: string;
 }

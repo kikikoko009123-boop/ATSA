@@ -113,18 +113,32 @@ export function Home() {
           ) : (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {displayedProducts.map(product => (
-                  <div key={product.id} className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-700/80 to-slate-900/80 backdrop-blur-xl rounded-lg transform transition-transform group-hover:scale-105"></div>
-                    <div className="relative bg-white/90 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition">
-                      <img src={product.image} alt={product.name} className="w-full h-64 object-cover" />
+                {displayedProducts.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className="relative group"
+                    style={{
+                      animation: `fadeInUp 0.6s ease-out ${index * 0.15}s backwards`
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-700/80 to-slate-900/80 backdrop-blur-xl rounded-lg transform transition-transform duration-300 group-hover:scale-105"></div>
+                    <div className="relative bg-white/90 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                      <div className="overflow-hidden">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-64 object-cover transform transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </div>
                       <div className="p-6">
                         <h3 className="text-xl font-bold text-[#3d4f5c] mb-2">{product.name}</h3>
                         <p className="text-sm text-gray-500 mb-2">{product.category}</p>
                         <p className="text-gray-600 line-clamp-3">{product.description}</p>
-                        <div className="mt-4 text-lg font-bold text-[#3d4f5c]">
-                          ${product.price}
-                        </div>
+                        {product.show_price !== false && (
+                          <div className="mt-4 text-lg font-bold text-[#3d4f5c]">
+                            ${product.price}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -149,7 +163,10 @@ export function Home() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-[#3d4f5c] mb-12 text-center">Our Services</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="relative p-8 rounded-lg shadow-sm overflow-hidden group">
+            <div
+              className="relative p-8 rounded-lg shadow-sm overflow-hidden group transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
+              style={{ animation: 'fadeInUp 0.6s ease-out 0s backwards' }}
+            >
               <div className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-40 transition" style={{backgroundImage: 'url(https://images.pexels.com/photos/1474993/pexels-photo-1474993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750)'}}></div>
               <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/95"></div>
               <div className="relative z-10">
@@ -160,8 +177,11 @@ export function Home() {
                 </p>
               </div>
             </div>
-            <div className="relative p-8 rounded-lg shadow-sm overflow-hidden group">
-              <div className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-40 transition" style={{backgroundImage: 'url(https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750)'}}></div>
+            <div
+              className="relative p-8 rounded-lg shadow-sm overflow-hidden group transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
+              style={{ animation: 'fadeInUp 0.6s ease-out 0.15s backwards' }}
+            >
+              <div className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-40 transition-opacity duration-300" style={{backgroundImage: 'url(https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750)'}}></div>
               <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/95"></div>
               <div className="relative z-10">
                 <Shield className="w-12 h-12 text-[#3d4f5c] mb-4" />
@@ -171,8 +191,11 @@ export function Home() {
                 </p>
               </div>
             </div>
-            <div className="relative p-8 rounded-lg shadow-sm overflow-hidden group">
-              <div className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-40 transition" style={{backgroundImage: 'url(https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750)'}}></div>
+            <div
+              className="relative p-8 rounded-lg shadow-sm overflow-hidden group transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
+              style={{ animation: 'fadeInUp 0.6s ease-out 0.3s backwards' }}
+            >
+              <div className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-40 transition-opacity duration-300" style={{backgroundImage: 'url(https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750)'}}></div>
               <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/95"></div>
               <div className="relative z-10">
                 <CheckCircle className="w-12 h-12 text-[#3d4f5c] mb-4" />
@@ -191,23 +214,38 @@ export function Home() {
           <h2 className="text-3xl font-bold text-[#3d4f5c] mb-12 text-center">Materials We Work With</h2>
           <div className="max-w-2xl mx-auto">
             <ul className="space-y-4">
-              <li className="flex items-center gap-3">
+              <li
+                className="flex items-center gap-3 transition-all duration-300 hover:translate-x-2"
+                style={{ animation: 'fadeInLeft 0.5s ease-out 0s backwards' }}
+              >
                 <CheckCircle className="w-6 h-6 text-[#3d4f5c] flex-shrink-0" />
                 <span className="text-lg text-gray-700">Stainless Steel (Inox)</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li
+                className="flex items-center gap-3 transition-all duration-300 hover:translate-x-2"
+                style={{ animation: 'fadeInLeft 0.5s ease-out 0.1s backwards' }}
+              >
                 <CheckCircle className="w-6 h-6 text-[#3d4f5c] flex-shrink-0" />
                 <span className="text-lg text-gray-700">Aluminum</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li
+                className="flex items-center gap-3 transition-all duration-300 hover:translate-x-2"
+                style={{ animation: 'fadeInLeft 0.5s ease-out 0.2s backwards' }}
+              >
                 <CheckCircle className="w-6 h-6 text-[#3d4f5c] flex-shrink-0" />
                 <span className="text-lg text-gray-700">Carbon Steel</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li
+                className="flex items-center gap-3 transition-all duration-300 hover:translate-x-2"
+                style={{ animation: 'fadeInLeft 0.5s ease-out 0.3s backwards' }}
+              >
                 <CheckCircle className="w-6 h-6 text-[#3d4f5c] flex-shrink-0" />
                 <span className="text-lg text-gray-700">Galvanized Steel (Galva)</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li
+                className="flex items-center gap-3 transition-all duration-300 hover:translate-x-2"
+                style={{ animation: 'fadeInLeft 0.5s ease-out 0.4s backwards' }}
+              >
                 <CheckCircle className="w-6 h-6 text-[#3d4f5c] flex-shrink-0" />
                 <span className="text-lg text-gray-700">Various Metal Alloys</span>
               </li>
